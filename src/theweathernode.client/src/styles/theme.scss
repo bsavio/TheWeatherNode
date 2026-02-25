@@ -1,0 +1,32 @@
+$font-family-base: 'Inter', sans-serif;
+
+$body-bg: #111827;
+$body-color: #f1f5f9;
+$primary: #38bdf8;
+$secondary: #1e2736;
+$success: #34d399;
+$warning: #fbbf24;
+$danger: #f87171;
+$info: #7dd3fc;
+
+@import 'bootstrap/scss/bootstrap';
+
+.sidebar {
+    background-color: $secondary;
+    color: $body-color;
+}
+
+.navbar {
+    background-color: $secondary !important;
+    padding: 0 !important;
+}
+
+.navbar .container-fluid {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.navbar-brand {
+    padding: 0 !important;
+    margin: 0 !important;
+}
