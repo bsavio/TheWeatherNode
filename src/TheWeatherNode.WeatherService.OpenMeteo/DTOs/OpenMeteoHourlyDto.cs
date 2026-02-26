@@ -10,7 +10,7 @@ namespace TheWeatherNode.WeatherService.OpenMeteo.DTOs
     /// allowing for detailed time-series analysis of forecasted weather conditions.
     /// Each property contains data points aligned with corresponding time stamps.
     /// </remarks>
-    public class OpenMeteoHourly
+    public class OpenMeteoHourlyDto
     {
         /// <summary>
         /// Gets or sets the list of ISO 8601 timestamps for each hourly data point.

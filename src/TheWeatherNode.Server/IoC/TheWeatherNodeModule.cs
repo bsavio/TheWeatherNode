@@ -10,7 +10,7 @@ namespace TheWeatherNode.Server.IoC
 {
     public class TheWeatherNodeModule : Module
     {
-        private const string SettingParam = "settings";
+        private const string SettingsParam = "settings";
 
         private readonly AppSettingsProvider _appSettingsProvider;
 
@@ -35,7 +35,7 @@ namespace TheWeatherNode.Server.IoC
             #region Weather Services
             builder.RegisterType<OpenMeteoClient>()
                 .As<IOpenMeteoClient>()
-                .WithParameter(SettingParam, _appSettingsProvider.GetAppSetting<OpenMeteoClientSettings>())
+                .WithParameter(SettingsParam, _appSettingsProvider.GetAppSetting<OpenMeteoClientSettings>())
                 .InstancePerLifetimeScope();
             builder.RegisterType<OpenMeteoWeatherService>()
                 .As<IWeatherService>()

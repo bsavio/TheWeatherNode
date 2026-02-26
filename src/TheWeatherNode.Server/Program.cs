@@ -1,17 +1,25 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Serilog;
+using TheWeatherNode.Core.Config;
 using TheWeatherNode.Server.IoC;
+using TheWeatherNode.WeatherService.OpenMeteo.Client;
 
 var builder = WebApplication.CreateBuilder(args);
+var appSettingsProvider = new AppSettingsProvider();
 
+//Logging configuration
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Debug()
     .WriteTo.Console()
     .WriteTo.File("logs/weathernode-.log", rollingInterval: RollingInterval.Day)
     .CreateLogger();
-
 builder.Host.UseSerilog();
+
+//HttpClient configuration
+builder.Services.AddHttpClient<OpenMeteoClient>();
+
+//Autofac configuration
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 {

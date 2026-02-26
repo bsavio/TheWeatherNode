@@ -2,6 +2,7 @@
 {
     public class OpenMeteoClientSettings
     {
-        public string BaseUrl { get; set; } = "https://api.open-mateo.com/v1";
+        public string BaseUrl { get; set; } = "";
+        public double Timeout { get; set; }
     }
 }

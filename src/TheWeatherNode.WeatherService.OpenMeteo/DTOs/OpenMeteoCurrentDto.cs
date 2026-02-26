@@ -9,7 +9,7 @@ namespace TheWeatherNode.WeatherService.OpenMeteo.DTOs
     /// Contains real-time weather data including temperature, wind, precipitation,
     /// and atmospheric measurements at the time of API request.
     /// </remarks>
-    public class OpenMeteoCurrent
+    public class OpenMeteoCurrentDto
     {
         /// <summary>
         /// Gets or sets the ISO 8601 timestamp of the current weather observation.
@@ -67,11 +67,6 @@ namespace TheWeatherNode.WeatherService.OpenMeteo.DTOs
         [JsonPropertyName("precipitation")]
         public double Precipitation { get; set; }
 
-        /// <summary>
-        /// Gets or sets the probability of precipitation as a percentage (0-100).
-        /// </summary>
-        [JsonPropertyName("precipitation_probability")]
-        public double PrecipitationProbability { get; set; }
 
         /// <summary>
         /// Gets or sets the surface air pressure in hectopascals (hPa).

@@ -9,7 +9,7 @@ namespace TheWeatherNode.WeatherService.OpenMeteo.DTOs
     /// This DTO maps the JSON response from Open-Meteo's weather forecast API, containing
     /// geographic information and weather data aggregated at current, hourly, and daily intervals.
     /// </remarks>
-    public class OpenMeteoForecastResponse
+    public class OpenMeteoForecastResponseDto
     {
         /// <summary>
         /// Gets or sets the latitude coordinate of the requested location.
@@ -41,18 +41,18 @@ namespace TheWeatherNode.WeatherService.OpenMeteo.DTOs
         /// Gets or sets the current weather conditions.
         /// </summary>
         [JsonPropertyName("current")]
-        public OpenMeteoCurrent? Current { get; set; }
+        public OpenMeteoCurrentDto? Current { get; set; }
 
         /// <summary>
         /// Gets or sets the hourly weather forecast data.
         /// </summary>
         [JsonPropertyName("hourly")]
-        public OpenMeteoHourly? Hourly { get; set; }
+        public OpenMeteoHourlyDto? Hourly { get; set; }
 
         /// <summary>
         /// Gets or sets the daily weather forecast data.
         /// </summary>
         [JsonPropertyName("daily")]
-        public OpenMeteoDaily? Daily { get; set; }
+        public OpenMeteoDailyDto? Daily { get; set; }
     }
 }
