@@ -1,4 +1,4 @@
-﻿using TheWeatherNode.Core.Models;
+﻿using TheWeatherNode.Core.Models.Responses;
 
 namespace TheWeatherNode.Core.Interfaces
 {

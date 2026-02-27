@@ -1,4 +1,4 @@
-﻿namespace TheWeatherNode.Core.Models
+﻿namespace TheWeatherNode.Core.Models.Responses
 {
     public class SevereWeatherData
     {

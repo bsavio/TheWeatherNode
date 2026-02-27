@@ -1,4 +1,5 @@
-﻿using TheWeatherNode.Core.Models;
+﻿using TheWeatherNode.Core.Models.Responses;
+using TheWeatherNode.Core.Models.Requests;
 
 namespace TheWeatherNode.Core.Interfaces
 {
@@ -9,9 +10,8 @@ namespace TheWeatherNode.Core.Interfaces
     /// This interface abstracts the weather service implementation, allowing different weather
     /// data providers (Open-Meteo, Weather API, etc.) to be plugged in without changing client code.
     /// 
-    /// Weather data returned by implementations of this interface may be in metric or imperial units
-    /// depending on the configuration of the weather service. Consuming services should be aware of
-    /// the unit system in use and perform conversions as needed.
+    /// Weather data returned by implementations of this interface uses units specified in the request
+    /// object (metric or imperial). All request objects handle unit conversion from strings to strongly-typed enums.
     /// 
     /// Common metric units:
     /// - Temperature: degrees Celsius
@@ -50,7 +50,7 @@ namespace TheWeatherNode.Core.Interfaces
         /// The unit system (metric or imperial) depends on the service implementation configuration.
         /// Refer to the specific implementation documentation for unit details.
         /// </remarks>
-        Task<CurrentWeather> GetCurrentWeatherAsync(double latitude, double longitude);
+        Task<CurrentWeather> GetCurrentWeatherAsync(WeatherRequest weatherRequest);
 
         /// <summary>
         /// Retrieves hourly weather forecasts for the specified geographic coordinates.
@@ -82,7 +82,7 @@ namespace TheWeatherNode.Core.Interfaces
         /// The unit system (metric or imperial) depends on the service implementation configuration.
         /// Refer to the specific implementation documentation for unit details.
         /// </remarks>
-        Task<IEnumerable<HourlyForecast>> GetHourlyForecastAsync(double latitude, double longitude, int days = 7);
+        Task<IEnumerable<HourlyForecast>> GetHourlyForecastAsync(WeatherRequest weatherRequest);
 
         /// <summary>
         /// Retrieves daily weather forecasts for the specified geographic coordinates.
@@ -115,6 +115,6 @@ namespace TheWeatherNode.Core.Interfaces
         /// The unit system (metric or imperial) depends on the service implementation configuration.
         /// Refer to the specific implementation documentation for unit details.
         /// </remarks>
-        Task<IEnumerable<DailyForecast>> GetDailyForecastAsync(double latitude, double longitude, int days = 7);
+        Task<IEnumerable<DailyForecast>> GetDailyForecastAsync(WeatherRequest weatherRequest);
     }
 }

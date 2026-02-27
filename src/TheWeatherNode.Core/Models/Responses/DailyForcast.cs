@@ -1,4 +1,4 @@
-﻿namespace TheWeatherNode.Core.Models
+﻿namespace TheWeatherNode.Core.Models.Responses
 {
     /// <summary>
     /// Represents a daily weather forecast for a specific location and date.

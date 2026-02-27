@@ -1,24 +1,42 @@
-﻿namespace TheWeatherNode.WeatherService.OpenMeteo.Builders
+﻿using TheWeatherNode.Core.Models;
+using TheWeatherNode.Core.Models.Requests;
+
+namespace TheWeatherNode.WeatherService.OpenMeteo.Builders
 {
     public static class OpenMeteoRequestBuilder
     {
+        public static IDictionary<TemperatureUnit, string> TemperatureMappings = new Dictionary<TemperatureUnit, string>
+        {
+            { TemperatureUnit.Celsius, "celsius" },
+            { TemperatureUnit.Fahrenheit, "fahrenheit" }
+        };
+
+        private static readonly IDictionary<WindSpeedUnit, string> WindSpeedMappings = new Dictionary<WindSpeedUnit, string>
+        {
+            { WindSpeedUnit.Kph, "km/h" },
+            { WindSpeedUnit.Mph, "mph" },
+            { WindSpeedUnit.Knots, "knots" }
+        };
+
+        private static readonly IDictionary<PrecipitationUnit, string> PrecipitationMappings = new Dictionary<PrecipitationUnit, string>
+        {
+            { PrecipitationUnit.Millimeters, "mm" },
+            { PrecipitationUnit.Inches, "inch" }
+        };
+
         public static Dictionary<string, object> BuildForecastParameters(
-            double latitude,
-            double longitude,
+            WeatherRequest weatherRequest,
             bool includeCurrent = false,
             bool includeHourly = false,
-            bool includeDaily = false,
-            string temperatureUnit = "fahrenheit",
-            string windSpeedUnit = "mph",
-            string precipitationUnit = "inch")
+            bool includeDaily = false)
         {
             var parameters = new Dictionary<string, object>
             {
-                { "latitude", latitude },
-                { "longitude", longitude },
-                { "temperature_unit", temperatureUnit },
-                { "wind_speed_unit", windSpeedUnit },
-                { "precipitation_unit", precipitationUnit }
+                { "latitude", weatherRequest.Latitude },
+                { "longitude", weatherRequest.Longitude },
+                { "temperature_unit", TemperatureMappings[weatherRequest.TemperatureUnit] },
+                { "wind_speed_unit", WindSpeedMappings[weatherRequest.WindSpeedUnit] },
+                { "precipitation_unit", PrecipitationMappings[weatherRequest.PrecipitationUnit] }
             };
 
             if (includeCurrent)
