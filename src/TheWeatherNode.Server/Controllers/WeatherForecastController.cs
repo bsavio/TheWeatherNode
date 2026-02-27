@@ -53,12 +53,10 @@ namespace TheWeatherNode.Server.Controllers
         /// Future improvements should make location configurable via query parameters.
         /// </remarks>
         [HttpGet("current")]
-        public async Task<IActionResult> GetCurrentWeather()
+        public async Task<IActionResult> GetCurrentWeather(double latitude = 40.3025, double longitude = 74.3038)
         {
             try
             {
-                var latitude = 40.3247741813087;
-                var longitude = -74.33691292817657;
                 var currentWeather = await _weatherService.GetCurrentWeatherAsync(latitude, longitude);
                 return Ok(currentWeather);
             }
@@ -85,12 +83,10 @@ namespace TheWeatherNode.Server.Controllers
         /// Future improvements should make location and number of days configurable via query parameters.
         /// </remarks>
         [HttpGet("hourly")]
-        public async Task<IActionResult> GetHourlyForecast()
+        public async Task<IActionResult> GetHourlyForecast(double latitude = 40.3025, double longitude = 74.3038)
         {
             try
             {
-                var latitude = 40.3247741813087;
-                var longitude = -74.33691292817657;
                 var hourlyForecast = await _weatherService.GetHourlyForecastAsync(latitude, longitude);
                 return Ok(hourlyForecast);
             }
@@ -118,12 +114,10 @@ namespace TheWeatherNode.Server.Controllers
         /// Future improvements should make location and number of days configurable via query parameters.
         /// </remarks>
         [HttpGet("daily")]
-        public async Task<IActionResult> GetDailyForecast()
+        public async Task<IActionResult> GetDailyForecast(double latitude = 40.3025, double longitude = 74.3038)
         {
             try
             {
-                var latitude = 40.3247741813087;
-                var longitude = -74.33691292817657;
                 var dailyForecast = await _weatherService.GetDailyForecastAsync(latitude, longitude);
                 return Ok(dailyForecast);
             }
