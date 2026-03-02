@@ -38,7 +38,7 @@ namespace TheWeatherNode.Core.Models.Requests
         /// Case-insensitive. Default: "celsius"
         /// </param>
         /// <param name="windSpeedUnit">
-        /// The desired wind speed unit for the response (e.g., "kph", "km/h", "mph", "knots").
+        /// The desired wind speed unit for the response (e.g., "kmh", "km/h", "mph", "knots").
         /// Case-insensitive with alias support. Default: "km/h"
         /// </param>
         /// <param name="precipitationUnit">
@@ -106,7 +106,7 @@ namespace TheWeatherNode.Core.Models.Requests
         /// The unit string is converted case-insensitively with alias support using the extension method
         /// <see cref="TheWeatherNode.Core.Extensions.UnitTypeExtensions.ToWindSpeedUnit(string)"/>.
         /// 
-        /// Supported values: "kph", "km/h", "kmh", "mph", "knots"
+        /// Supported values: "kmh", "km/h", "kmh", "mph", "knots"
         /// </remarks>
         public WindSpeedUnit WindSpeedUnit { get; }
 

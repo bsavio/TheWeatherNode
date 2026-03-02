@@ -53,7 +53,7 @@ namespace TheWeatherNode.Core.Extensions
         /// <summary>
         /// Converts a string to a <see cref="WindSpeedUnit"/> with case-insensitive matching and alias support.
         /// </summary>
-        /// <param name="value">The string value to convert (e.g., "kph", "km/h", "mph", "knots").</param>
+        /// <param name="value">The string value to convert (e.g., "kmh", "km/h", "mph", "knots").</param>
         /// <returns>The corresponding <see cref="WindSpeedUnit"/> value.</returns>
         /// <exception cref="ArgumentException">
         /// Thrown when the string value does not match any valid <see cref="WindSpeedUnit"/> or its aliases.
@@ -64,8 +64,8 @@ namespace TheWeatherNode.Core.Extensions
         /// <remarks>
         /// This method performs case-insensitive matching and supports common aliases:
         /// 
-        /// For Kph (kilometers per hour):
-        /// - "kph", "KPH", "Kph", "km/h", "kmh", "km\h"
+        /// For Kmh (kilometers per hour):
+        /// - "kmh", "KPH", "Kmh", "km/h", "kmh", "km\h"
         /// 
         /// For Mph (miles per hour):
         /// - "mph", "MPH", "Mph"
@@ -81,16 +81,16 @@ namespace TheWeatherNode.Core.Extensions
             // Normalize the input by removing spaces and converting to lowercase
             var normalizedValue = value.Trim().ToLowerInvariant().Replace(" ", "");
 
-            // Check for Kph aliases
-            if (normalizedValue is "kph" or "km/h" or "kmh" or "km\\h")
-                return WindSpeedUnit.Kph;
+            // Check for Kmh aliases
+            if (normalizedValue is "kmh" or "km/h" or "kmh" or "km\\h")
+                return WindSpeedUnit.Kmh;
 
             // Check for Mph aliases
             if (normalizedValue is "mph")
                 return WindSpeedUnit.Mph;
 
             // Check for Knots aliases
-            if (normalizedValue is "knots")
+            if (normalizedValue is "knots" or "kn")
                 return WindSpeedUnit.Knots;
 
             // Fallback to enum name matching for any other input
@@ -98,7 +98,7 @@ namespace TheWeatherNode.Core.Extensions
                 return result;
 
             throw new ArgumentException(
-                $"'{value}' is not a valid wind speed unit. Valid values are: kph, km/h, kmh, mph, knots",
+                $"'{value}' is not a valid wind speed unit. Valid values are: kmh, km/h, kmh, mph, knots",
                 nameof(value));
         }
 
@@ -106,10 +106,10 @@ namespace TheWeatherNode.Core.Extensions
         /// Converts a <see cref="WindSpeedUnit"/> to its string representation.
         /// </summary>
         /// <param name="unit">The wind speed unit to convert.</param>
-        /// <returns>The string representation of the wind speed unit (e.g., "Kph", "Mph", "Knots").</returns>
+        /// <returns>The string representation of the wind speed unit (e.g., "Kmh", "Mph", "Knots").</returns>
         /// <remarks>
         /// This method returns the enum name as-is without modification.
-        /// To get a different string representation (e.g., "km/h" instead of "Kph"),
+        /// To get a different string representation (e.g., "km/h" instead of "Kmh"),
         /// consider implementing a separate method with custom mappings.
         /// </remarks>
         public static string ToWindSpeedUnitString(this WindSpeedUnit unit)
@@ -129,7 +129,7 @@ namespace TheWeatherNode.Core.Extensions
         {
             return unit switch
             {
-                WindSpeedUnit.Kph => "km/h",
+                WindSpeedUnit.Kmh => "km/h",
                 WindSpeedUnit.Mph => "mph",
                 WindSpeedUnit.Knots => "knots",
                 _ => unit.ToString()

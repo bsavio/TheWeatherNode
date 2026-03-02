@@ -1,6 +1,6 @@
 import React from "react";
 import { createBrowserRouter } from "react-router";
-import App from './App'
+import App from "./App";
 
 /**
  * Simple router for TheWeatherNode client.
@@ -15,13 +15,12 @@ export const ROUTES = {
   HOME: "/",
 } as const;
 
-
 export const router = createBrowserRouter([
-    {
-        path: ROUTES.HOME,
-        element: <App />,
-    },
-])
+  {
+    path: ROUTES.HOME,
+    element: <App />,
+  },
+]);
 
 const NotFound: React.FC = () => {
   const location = useLocation();

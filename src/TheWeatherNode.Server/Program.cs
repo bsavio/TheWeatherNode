@@ -29,7 +29,23 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("DevelopmentPolicy", policy =>
+    {
+        policy.WithOrigins("http://localhost:5173") // Vite's default port
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
+
+// Add after app is built, before other middleware
+if (app.Environment.IsDevelopment())
+{
+    app.UseCors("DevelopmentPolicy");
+}
 
 app.UseDefaultFiles();
 app.UseStaticFiles();

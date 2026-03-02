@@ -13,9 +13,9 @@ namespace TheWeatherNode.WeatherService.OpenMeteo.Builders
 
         private static readonly IDictionary<WindSpeedUnit, string> WindSpeedMappings = new Dictionary<WindSpeedUnit, string>
         {
-            { WindSpeedUnit.Kph, "km/h" },
+            { WindSpeedUnit.Kmh, "kmh" },
             { WindSpeedUnit.Mph, "mph" },
-            { WindSpeedUnit.Knots, "knots" }
+            { WindSpeedUnit.Knots, "kn" }
         };
 
         private static readonly IDictionary<PrecipitationUnit, string> PrecipitationMappings = new Dictionary<PrecipitationUnit, string>

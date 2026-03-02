@@ -30,7 +30,7 @@ namespace TheWeatherNode.Core.Models
         /// <summary>
         /// Kilometers per hour (km/h).
         /// </summary>
-        Kph,
+        Kmh,
 
         /// <summary>
         /// Miles per hour (mph).

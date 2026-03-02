@@ -1,3 +1,3 @@
 export default function HomePageSidebar() {
-    return <div>Home Page Sidebar</div>
-};
+  return <div>Home Page Sidebar</div>;
+}

@@ -54,7 +54,7 @@ namespace TheWeatherNode.Server.Controllers
         /// Future improvements should make location configurable via query parameters.
         /// </remarks>
         [HttpGet("current")]
-        public async Task<IActionResult> GetCurrentWeather(double latitude = 40.3025, double longitude = 74.3038, string temperatureUnit = "celsius", string windSpeedUnit = "kmp", string precipituationUnit = "millimeters")
+        public async Task<IActionResult> GetCurrentWeather(double latitude = 40.3025, double longitude = 74.3038, string temperatureUnit = "celsius", string windSpeedUnit = "kmh", string precipituationUnit = "millimeters")
         {
             try
             {
