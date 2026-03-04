@@ -1,6 +1,8 @@
 
 ## Projects
 
+Note: This project is still in development
+
 ### 1. **TheWeatherNode.Server**
 **Purpose**: ASP.NET Core 8 REST API backend
 
