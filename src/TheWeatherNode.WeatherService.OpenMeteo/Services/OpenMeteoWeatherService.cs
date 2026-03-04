@@ -3,7 +3,7 @@ using TheWeatherNode.Core.Interfaces;
 using TheWeatherNode.Core.Models.Requests;
 using TheWeatherNode.Core.Models.Responses;
 using TheWeatherNode.WeatherService.OpenMeteo.Builders;
-using TheWeatherNode.WeatherService.OpenMeteo.Client;
+using TheWeatherNode.WeatherService.OpenMeteo.Client.Interfaces;
 using TheWeatherNode.WeatherService.OpenMeteo.DTOs;
 
 namespace TheWeatherNode.WeatherService.OpenMeteo.Services
@@ -28,7 +28,7 @@ namespace TheWeatherNode.WeatherService.OpenMeteo.Services
     /// </remarks>
     public class OpenMeteoWeatherService : IWeatherService
     {
-        private readonly IOpenMeteoClient _openMeteoClient;
+        private readonly IOpenMeteoWeatherClient _openMeteoClient;
         private readonly ILogger<OpenMeteoWeatherService> _logger;
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace TheWeatherNode.WeatherService.OpenMeteo.Services
         /// <exception cref="ArgumentNullException">
         /// Thrown when <paramref name="openMeteoClient"/> or <paramref name="logger"/> is null.
         /// </exception>
-        public OpenMeteoWeatherService(IOpenMeteoClient openMeteoClient, ILogger<OpenMeteoWeatherService> logger)
+        public OpenMeteoWeatherService(IOpenMeteoWeatherClient openMeteoClient, ILogger<OpenMeteoWeatherService> logger)
         {
             _openMeteoClient = openMeteoClient;
             _logger = logger;
@@ -82,10 +82,13 @@ namespace TheWeatherNode.WeatherService.OpenMeteo.Services
             if (weatherRequest == null)
                 throw new ArgumentNullException(nameof(weatherRequest), "Current weather request cannot be null.");
 
+            _logger.LogDebug("Retrieving current weather for coordinates ({Latitude}, {Longitude}) with temperature unit {TemperatureUnit}, wind speed unit {WindSpeedUnit}, and precipitation unit {PrecipitationUnit}.",
+                weatherRequest.Latitude, weatherRequest.Longitude, weatherRequest.TemperatureUnit, weatherRequest.WindSpeedUnit, weatherRequest.PrecipitationUnit);
             var parameters = OpenMeteoRequestBuilder.BuildForecastParameters(weatherRequest, includeCurrent: true);
-            var result = await _openMeteoClient.GetAsync<OpenMeteoForecastResponseDto>("forecast", parameters) 
+            var result = await _openMeteoClient.GetForcastAsync<OpenMeteoForecastResponseDto>(parameters) 
                 ?? throw new InvalidOperationException("Failed to retrieve current weather data from Open-Meteo API.");
-            
+            _logger.LogDebug("Successfully retrieved current weather data from Open-Meteo API for coordinates ({Latitude}, {Longitude}).", weatherRequest.Latitude, weatherRequest.Longitude);
+
             var openMeteoCurrentDto = result.Current 
                 ?? throw new InvalidOperationException("Current weather data is missing in the Open-Meteo API response.");
             
@@ -154,7 +157,7 @@ namespace TheWeatherNode.WeatherService.OpenMeteo.Services
                 throw new ArgumentNullException(nameof(weatherRequest), "Hourly weather request cannot be null.");
 
             var parameters = OpenMeteoRequestBuilder.BuildForecastParameters(weatherRequest, includeHourly: true);
-            var result = await _openMeteoClient.GetAsync<OpenMeteoForecastResponseDto>("forecast", parameters) 
+            var result = await _openMeteoClient.GetForcastAsync<OpenMeteoForecastResponseDto>(parameters) 
                 ?? throw new InvalidOperationException("Failed to retrieve hourly weather data from Open-Meteo API.");
             
             var openMeteoHourlyDto = result.Hourly 
@@ -231,7 +234,7 @@ namespace TheWeatherNode.WeatherService.OpenMeteo.Services
                 throw new ArgumentNullException(nameof(weatherRequest), "Daily forecast request cannot be null.");
 
             var parameters = OpenMeteoRequestBuilder.BuildForecastParameters(weatherRequest, includeDaily: true);
-            var result = await _openMeteoClient.GetAsync<OpenMeteoForecastResponseDto>("forecast", parameters) 
+            var result = await _openMeteoClient.GetForcastAsync<OpenMeteoForecastResponseDto>(parameters) 
                 ?? throw new InvalidOperationException("Failed to retrieve daily weather data from Open-Meteo API.");
             
             var openMeteoDailyDto = result.Daily 

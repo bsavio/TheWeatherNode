@@ -1,0 +1,26 @@
+.search-dropdown {
+    &__menu {
+        max-height: 250px;
+        overflow-y: auto;
+        z-index: 1050;
+
+        .dropdown-item {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: pointer;
+
+            &:hover,
+            &:focus {
+                background-color: var(--bs-primary);
+                color: white;
+            }
+        }
+    }
+
+    &--loading {
+        .form-control {
+            background-image: url("data:image/svg+xml,..."); // optional spinner
+        }
+    }
+}

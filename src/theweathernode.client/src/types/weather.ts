@@ -1,10 +1,12 @@
+import type { TemperatureUnit, WindSpeedUnit, PrecipitationUnit } from './units';
+
 // Mirrors C# WeatherRequest
 export interface WeatherRequest {
   latitude: number;
   longitude: number;
-  temperatureUnit: string;
-  windSpeedUnit: string;
-  precipitationUnit: string;
+  temperatureUnit: TemperatureUnit;
+  windSpeedUnit: WindSpeedUnit;
+  precipitationUnit: PrecipitationUnit;
 }
 
 // Mirrors C# CurrentWeather

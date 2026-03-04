@@ -17,7 +17,8 @@ Log.Logger = new LoggerConfiguration()
 builder.Host.UseSerilog();
 
 //HttpClient configuration
-builder.Services.AddHttpClient<OpenMeteoClient>();
+builder.Services.AddHttpClient<OpenMeteoWeatherClient>();
+builder.Services.AddHttpClient<OpenMeteoGeocodingClient>();
 
 //Autofac configuration
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());

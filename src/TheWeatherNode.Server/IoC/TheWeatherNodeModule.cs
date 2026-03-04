@@ -3,6 +3,8 @@ using Serilog;
 using TheWeatherNode.Core.Config;
 using TheWeatherNode.Core.Interfaces;
 using TheWeatherNode.WeatherService.OpenMeteo.Client;
+using TheWeatherNode.WeatherService.OpenMeteo.Client.Interfaces;
+using TheWeatherNode.WeatherService.OpenMeteo.Client.Settings;
 using TheWeatherNode.WeatherService.OpenMeteo.Services;
 using Module = Autofac.Module;
 
@@ -33,12 +35,22 @@ namespace TheWeatherNode.Server.IoC
             #endregion
 
             #region Weather Services
-            builder.RegisterType<OpenMeteoClient>()
-                .As<IOpenMeteoClient>()
-                .WithParameter(SettingsParam, _appSettingsProvider.GetAppSetting<OpenMeteoClientSettings>())
+            builder.RegisterType<OpenMeteoWeatherClient>()
+                .As<IOpenMeteoWeatherClient>()
+                .WithParameter(SettingsParam, _appSettingsProvider.GetAppSetting<OpenMeteoWeatherClientSettings>())
                 .InstancePerLifetimeScope();
             builder.RegisterType<OpenMeteoWeatherService>()
                 .As<IWeatherService>()
+                .InstancePerLifetimeScope();
+            #endregion
+
+            #region Geocoding Services
+            builder.RegisterType<OpenMeteoGeocodingClient>()
+                .As<IOpenMeteoGeocodingClient>()
+                .WithParameter(SettingsParam, _appSettingsProvider.GetAppSetting<OpenMeteoGeocodingClientSettings>())
+                .InstancePerLifetimeScope();
+            builder.RegisterType<OpenMeteoGeocodingService>()
+                .As<IGeocodingService>()
                 .InstancePerLifetimeScope();
             #endregion
             Log.Information("TheWeatherNodeModule loaded successfully.");
