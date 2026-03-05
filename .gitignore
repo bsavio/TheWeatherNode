@@ -94,3 +94,4 @@ appsettings.Development.json
 # Logs
 logs/
 *.log
+/src/_site
