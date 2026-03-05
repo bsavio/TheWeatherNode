@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import HomePageSidebar from "./HomePageSidebar";
 import type { LayoutContextType } from "../../types/LayoutContextType";
-import type { WeatherRequest, CurrentWeather } from "../../types/weather";
+import type { WeatherRequest } from "../../types/weather";
 import { useFetchCurrentWeather } from "../../hooks/useFetchCurrentWeather";
 
 export default function HomePage() {

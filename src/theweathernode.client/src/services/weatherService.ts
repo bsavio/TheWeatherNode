@@ -1,5 +1,6 @@
 import weatherClient from "../api/weatherClient";
 import type {
+  WeatherRequest,
   CurrentWeather,
   DailyForecast,
   HourlyForecast,
@@ -10,8 +11,8 @@ export const getCurrentWeather = async (
 ): Promise<CurrentWeather> => {
   //TODO: Remove hardcoded values and use the passed in weatherRequest
   weatherRequest.latitude = 40.3025;
-  weatherRequest.Longitude = 74.3036;
-  weatherRequest.tempeeratureUnit = "fahrenheit";
+  weatherRequest.longitude = 74.3036;
+  weatherRequest.temperatureUnit = "fahrenheit";
   weatherRequest.windSpeedUnit = "mph";
   weatherRequest.precipitationUnit = "inch";
   const { data } = await weatherClient.get<CurrentWeather>("/weather/current", {
