@@ -3,7 +3,7 @@ using TheWeatherNode.Core.Interfaces;
 using TheWeatherNode.Core.Models.Requests;
 using TheWeatherNode.Core.Models.Responses;
 using TheWeatherNode.WeatherService.OpenMeteo.Builders;
-using TheWeatherNode.WeatherService.OpenMeteo.Client.Interfaces;
+using TheWeatherNode.WeatherService.OpenMeteo.Clients.Interfaces;
 using TheWeatherNode.WeatherService.OpenMeteo.DTOs;
 
 namespace TheWeatherNode.WeatherService.OpenMeteo.Services

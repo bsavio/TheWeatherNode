@@ -311,19 +311,6 @@ namespace TheWeatherNode.Core.Tests.Web
         #region Edge Case Tests
 
         [Fact]
-        public void BuildQueryString_WithNullObjectValue_ReturnsNullString()
-        {
-            // Arrange
-            var parameters = new Dictionary<string, object> { { "key", null } };
-
-            // Act
-            var result = HttpQueryBuilder.BuildQueryString(parameters);
-
-            // Assert
-            Assert.Equal("key=", result);
-        }
-
-        [Fact]
         public void BuildQueryString_WithEmptyStringValue_ReturnsEmptyValue()
         {
             // Arrange

@@ -25,7 +25,7 @@ export function useLocationSearch() {
                 setError(null);
                 const locations = await searchLocations(debouncedQuery);
                 setResults(locations);
-            } catch (err) {
+            } catch {
                 setError('Failed to search locations');
                 setResults([]);
             } finally {

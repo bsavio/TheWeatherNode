@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TheWeatherNode.WeatherService.OpenMeteo.Client.Settings
+namespace TheWeatherNode.WeatherService.OpenMeteo.Clients.Settings
 {
     /// <summary>
     /// Base class for Open-Meteo API client configuration _settings.

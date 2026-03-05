@@ -3,7 +3,7 @@ using Autofac.Extensions.DependencyInjection;
 using Serilog;
 using TheWeatherNode.Core.Config;
 using TheWeatherNode.Server.IoC;
-using TheWeatherNode.WeatherService.OpenMeteo.Client;
+using TheWeatherNode.WeatherService.OpenMeteo.Clients;
 
 var builder = WebApplication.CreateBuilder(args);
 var appSettingsProvider = new AppSettingsProvider();

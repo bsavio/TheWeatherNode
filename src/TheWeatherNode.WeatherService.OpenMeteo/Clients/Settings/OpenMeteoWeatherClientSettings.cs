@@ -1,4 +1,4 @@
-﻿namespace TheWeatherNode.WeatherService.OpenMeteo.Client.Settings
+﻿namespace TheWeatherNode.WeatherService.OpenMeteo.Clients.Settings
 {
     /// <summary>
     /// Configuration _settings specific to the Open-Meteo weather API client.

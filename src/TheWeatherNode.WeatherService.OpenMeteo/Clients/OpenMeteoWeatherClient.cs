@@ -1,10 +1,10 @@
 ﻿using System.Net.Http.Json;
 using TheWeatherNode.Core.Web;
-using TheWeatherNode.WeatherService.OpenMeteo.Client.Interfaces;
-using TheWeatherNode.WeatherService.OpenMeteo.Client.Settings;
+using TheWeatherNode.WeatherService.OpenMeteo.Clients.Interfaces;
+using TheWeatherNode.WeatherService.OpenMeteo.Clients.Settings;
 
 
-namespace TheWeatherNode.WeatherService.OpenMeteo.Client
+namespace TheWeatherNode.WeatherService.OpenMeteo.Clients
 {
     public class OpenMeteoWeatherClient : IOpenMeteoWeatherClient
     {

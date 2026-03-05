@@ -1,4 +1,4 @@
-﻿namespace TheWeatherNode.WeatherService.OpenMeteo.Client.Interfaces
+﻿namespace TheWeatherNode.WeatherService.OpenMeteo.Clients.Interfaces
 {
     public interface IOpenMeteoWeatherClient
     {

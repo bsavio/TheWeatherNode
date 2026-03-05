@@ -25,14 +25,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TheWeatherNode.Core\TheWeatherNode.Core.csproj" />
+    <ProjectReference Include="..\TheWeatherNode.WeatherService.OpenMeteo\TheWeatherNode.WeatherService.OpenMeteo.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Using Include="Xunit" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Web\" />
   </ItemGroup>
 
 </Project>

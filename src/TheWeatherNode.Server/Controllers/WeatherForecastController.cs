@@ -54,11 +54,11 @@ namespace TheWeatherNode.Server.Controllers
         /// Future improvements should make location configurable via query parameters.
         /// </remarks>
         [HttpGet("current")]
-        public async Task<IActionResult> GetCurrentWeather(double latitude = 40.3025, double longitude = 74.3038, string temperatureUnit = "celsius", string windSpeedUnit = "kmh", string precipituationUnit = "millimeters")
+        public async Task<IActionResult> GetCurrentWeather(double latitude = 40.3025, double longitude = 74.3038, string temperatureUnit = "celsius", string windSpeedUnit = "kmh", string precipitationUnit = "millimeters")
         {
             try
             {
-                var weatherRequest = new WeatherRequest(latitude, longitude, temperatureUnit, windSpeedUnit, precipituationUnit);
+                var weatherRequest = new WeatherRequest(latitude, longitude, temperatureUnit, windSpeedUnit, precipitationUnit);
                 var currentWeather = await _weatherService.GetCurrentWeatherAsync(weatherRequest);
                 return Ok(currentWeather);
             }
@@ -85,11 +85,11 @@ namespace TheWeatherNode.Server.Controllers
         /// Future improvements should make location and number of days configurable via query parameters.
         /// </remarks>
         [HttpGet("hourly")]
-        public async Task<IActionResult> GetHourlyForecast(double latitude = 40.3025, double longitude = 74.3038, string temperatureUnit = "celsius", string windSpeedUnit = "kmp", string precipituationUnit = "millimeters")
+        public async Task<IActionResult> GetHourlyForecast(double latitude = 40.3025, double longitude = 74.3038, string temperatureUnit = "celsius", string windSpeedUnit = "kmh", string precipitationUnit = "millimeters")
         {
             try
             {
-                var weatherRequest = new WeatherRequest(latitude, longitude, temperatureUnit, windSpeedUnit, precipituationUnit);
+                var weatherRequest = new WeatherRequest(latitude, longitude, temperatureUnit, windSpeedUnit, precipitationUnit);
                 var hourlyForecast = await _weatherService.GetHourlyForecastAsync(weatherRequest);
                 return Ok(hourlyForecast);
             }
@@ -117,11 +117,11 @@ namespace TheWeatherNode.Server.Controllers
         /// Future improvements should make location and number of days configurable via query parameters.
         /// </remarks>
         [HttpGet("daily")]
-        public async Task<IActionResult> GetDailyForecast(double latitude = 40.3025, double longitude = 74.3038, string temperatureUnit = "celsius", string windSpeedUnit = "kmp", string precipituationUnit = "millimeters")
+        public async Task<IActionResult> GetDailyForecast(double latitude = 40.3025, double longitude = 74.3038, string temperatureUnit = "celsius", string windSpeedUnit = "kmh", string precipitationUnit = "millimeters")
         {
             try
             {
-                var weatherRequest = new WeatherRequest(latitude, longitude, temperatureUnit, windSpeedUnit, precipituationUnit);
+                var weatherRequest = new WeatherRequest(latitude, longitude, temperatureUnit, windSpeedUnit, precipitationUnit);
                 var dailyForecast = await _weatherService.GetDailyForecastAsync(weatherRequest);
                 return Ok(dailyForecast);
             }

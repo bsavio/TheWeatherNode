@@ -20,16 +20,24 @@ namespace TheWeatherNode.Core.Extensions
         /// </exception>
         /// <remarks>
         /// This method performs case-insensitive matching. Valid inputs include:
-        /// - "celsius", "Celsius", "CELSIUS"
-        /// - "fahrenheit", "Fahrenheit", "FAHRENHEIT"
+        /// - "celsius", "Celsius", "CELSIUS", "c", "C"
+        /// - "fahrenheit", "Fahrenheit", "FAHRENHEIT", "f", "F"
         /// </remarks>
         public static TemperatureUnit ToTemperatureUnit(this string value)
         {
             if (value == null)
                 throw new ArgumentNullException(nameof(value), "Temperature unit string cannot be null.");
 
-            if (Enum.TryParse<TemperatureUnit>(value, ignoreCase: true, out var result))
-                return result;
+            // Normalize the input by converting to lowercase
+            var normalizedValue = value.Trim().ToLowerInvariant();
+
+            // Check for Celsius aliases
+            if (normalizedValue is "celsius" or "c")
+                return TemperatureUnit.Celsius;
+
+            // Check for Fahrenheit aliases
+            if (normalizedValue is "fahrenheit" or "f")
+                return TemperatureUnit.Fahrenheit;
 
             throw new ArgumentException(
                 $"'{value}' is not a valid temperature unit. Valid values are: {string.Join(", ", Enum.GetNames(typeof(TemperatureUnit)))}",

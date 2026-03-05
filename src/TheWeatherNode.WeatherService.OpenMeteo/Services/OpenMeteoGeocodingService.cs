@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using TheWeatherNode.Core.Interfaces;
 using TheWeatherNode.Core.Models.Responses;
-using TheWeatherNode.WeatherService.OpenMeteo.Client;
-using TheWeatherNode.WeatherService.OpenMeteo.Client.Interfaces;
+using TheWeatherNode.WeatherService.OpenMeteo.Clients;
+using TheWeatherNode.WeatherService.OpenMeteo.Clients.Interfaces;
 
 namespace TheWeatherNode.WeatherService.OpenMeteo.Services
 {
